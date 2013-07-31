@@ -1,0 +1,31 @@
+Kalman Filter Module
+Open-source code by @andersenchen and @sbchou at Knewton.
+
+This file contains class KalmanFilter (an implementation of the hybrid Kalman filter algorithm for the system outlined below), and a Simulator class for testing.
+
+KalmanFilter
+
+The filtering algorithm produces estimates of hidden (latent) variables using a series of continuous observations over time.
+
+The system we solve is a set of latent scalars X = {x_1, x_2,...,x_k} given scalar
+observations Z = {z_1, z_2,...,z_k}.
+
+Our latent state is evolved as a Gaussian random walk:
+x_k = x_{k_1} + sqrt(t_k - t_{k-1}) * w_k
+with w_k ~ N(0, q)
+and t_k - t_{k-1} being the time difference between our current and previous
+observations.
+
+Each observation occurs at a continuous timestamp.
+
+An observation of our latent state is made according to:
+z_k = x_k + v_k
+with v_k ~ N(0, r).
+
+Simulator
+
+This class simulates data to test the filter on.
+
+test_constant generates i.i.d. normal observations and assumes a constant time difference between observations and a constant latent state, and plots the results of parameter recovery by the Kalman filter.
+
+test_noisy_gaussian_walk does the same inference for a latent state evolved according to a Gaussian random walk with random time differences between observations.
